@@ -1,0 +1,5 @@
+/.idea
+/chexbert/src/checkpoint/chexbert.pth
+/findings_classifier/predictions/structured_preds_chexpert_log_weighting_test_macro.json
+/findings_classifier/predictions/structured_preds_chexpert_log_weighting_val_macro.json
+/data/mimic_cxr_instruct_llava_v2.json
