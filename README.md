@@ -139,3 +139,16 @@ dataset by following the instructions below:
 
 - run `python demo.py` to start the demo
 - connect to the demo with a browser at `http://127.0.0.1:7861` and start chatting with RaDialog
+- 
+
+## Reference
+When using our model (original and LLaVA version) or dataset, please cite:
+
+```
+@article{pellegrini2023radialog,
+  title={RaDialog: A Large Vision-Language Model for Radiology Report Generation and Conversational Assistance},
+  author={Pellegrini, Chantal and {\"O}zsoy, Ege and Busam, Benjamin and Navab, Nassir and Keicher, Matthias},
+  journal={arXiv preprint arXiv:2311.18681},
+  year={2023}
+}
+```
