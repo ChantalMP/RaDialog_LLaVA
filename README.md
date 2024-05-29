@@ -31,20 +31,35 @@ abilities of the underlying LLM, we propose a comprehensive, semi-automatically 
 tasks. By training with this dataset, our method achieves state-of-the-art clinical correctness in report generation and shows impressive abilities in
 interactive tasks such as correcting reports and answering questions, serving as a foundational step toward clinical dialog systems.
 
-## Get started
+---
+RaDialog-LLaVA follows the same concepts as the original RaDialog model, including the same image encoder, chexbert classifier, prompt construction
+and language model. However, we followed the LLaVA concepts for image-text alignment, making the model easier to train and use.
+The main differences are the following:
 
-If you just want use RaDialog for inference, follow the instructions in our huggingface
-repository [here](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation/blob/main/requirements.txt).
+- image projection: instead of the BLIP-inspired alignment module, we follow the LLaVA approach and use a simple MLP projection to project the image
+  features to the language model input size, leading to more image tokens.
+- the image encoder is fine-tuned during LLM training
+- the model was trained on an updated version of the RaDialog-Instruct dataset with three additional instruct tasks: impression generation, view
+  classification and Rad-ReStruct QA
+
+#### RaDialog-LLaVA main results:
+
+<img align="center" src="figs/results-radialog-llava.png" alt="teaser" width="50%">
+
+## Getting Started with RaDialog-LLaVA
+
+To test RaDialog and use it for inference, follow the instructions in our huggingface
+repository [here](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation).
 
 For more detailed instructions on how to train and evaluate RaDialog, please refer to the instructions below.
 
-## Installation
+## Repository Installation
 
 ### Environment Setup:
 
 #### 1) RaDialog Environment
 
-- clone this repository and move to the radialog directory with `cd RaDialog`
+- clone this repository and move to the radialog directory with `cd RaDialog_LLaVA`
 - Install the RaDialog environment with `conda create --name radialog python=3.10`
 - Activate the environment with `conda activate radialog`
 - `conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.7 -c pytorch -c nvidia`
@@ -58,17 +73,23 @@ For more detailed instructions on how to train and evaluate RaDialog, please ref
 - Activate the environment with `conda activate chexbert`
 - Move to the chexbert directory with `cd chexbert`
 - Install the requirements with `pip install -r requirements.txt`
-- Set the absolute path to the chexbert env and folder in `RaDialog/local_config.py`
-- Download chexbert.pth from [here](https://github.com/ChantalMP/RaDialog/releases/tag/weights) and place it in in RaDialog/chexbert/src/checkpoint/
+- Set the absolute path to the chexbert env and folder in `RaDialog_LLaVA/local_config.py`
+- Download chexbert.pth from [here](https://github.com/ChantalMP/RaDialog/releases/tag/weights) and place it in in
+  RaDialog_LLaVA/chexbert/src/checkpoint/
 
 ### Prepare Data
 
 #### 1) Download the RaDialog-Instruct dataset
 
+The updated dataset is currently under review at PhysioNet and will be available soon. In the meantime, you can use the previous version of the
+dataset by following the instructions below:
+
 - Download the instruct dataset from [PhysioNet](https://physionet.org/content/radialog-instruct-dataset/1.0.0/)
-- unzip it using `bzip2 -d input.txt.bz2` and place it in RaDialog/data/
+- unzip it place it in RaDialog_LLaVA/data/
+- in train.sh set the path to the instruct dataset (e.g. --data_path home/RaDialog_LLaVA/data/mimic_cxr_instruct_stratified.json)
 
 #### 2) Download MIMIC-CXR
+
 - Download the MIMIC-CXR-JPG dataset from [here](https://www.physionet.org/content/mimic-cxr-jpg/2.0.0/)
 - The dataset should be saved in .../physionet.org/files/mimic-cxr-jpg
 - Go to physionet.org/files/mimic-cxr-jpg/files/ and unzip mimic-cxr-2.0.0-split.csv.gz
@@ -78,9 +99,10 @@ For more detailed instructions on how to train and evaluate RaDialog, please ref
 - in model/lavis/defaults_report.yaml set the path to the MIMIC-CXR-JPG dataset (e.g. .../physionet.org/files/mimic-cxr-jpg/2.0.0 )
 
 #### 3) Create sectioned report data
+
 - go to the mimic-cxr folder in the code with `cd mimic-cxr`
 - run `python create_section_files.py` to prepare the report data
-- go back to the RaDialog directory with `cd ..`
+- go back to the RaDialog_LLaVA directory with `cd ..`
 
 ### Evaluate RaDialog on MIMIC-CXR test set:
 
@@ -100,7 +122,7 @@ For more detailed instructions on how to train and evaluate RaDialog, please ref
 #### 3) LLM Training
 
 - move to LLaVA directory with `cd LLaVA`
-- in train.sh set PYTHONPATH to the path of the RaDialog_v2 directory
+- in train.sh set PYTHONPATH to the path of the RaDialog_LLaVA directory
 - run ./train.sh to start training the model
 - we used checkpoint-21000
 
@@ -108,7 +130,7 @@ For more detailed instructions on how to train and evaluate RaDialog, please ref
 
 #### Demo Environment
 
-- Install the RaDialog environment with `conda create --name radialog_demo python=3.10`
+- Install the RaDialog demo environment with `conda create --name radialog_demo python=3.10`
 - Activate the environment with `conda activate radialog_demo`
 - `conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.7 -c pytorch -c nvidia`
 - pip install -r requirements_demo.txt

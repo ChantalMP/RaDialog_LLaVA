@@ -1,14 +1,14 @@
 export GPUS_PER_NODE=1
 export MASTER_ADDR=$(hostname)
 export MASTER_PORT=29713
-export PYTHONPATH="<path_to_repo>/RaDialog_v2:$PYTHONPATH"
+export PYTHONPATH="<path_to_repo>/RaDialog_LLaVA:$PYTHONPATH"
 
 CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.run --nproc_per_node=$GPUS_PER_NODE --master_addr=$MASTER_ADDR --master_port=$MASTER_PORT llava/train/train_mem.py \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
     --deepspeed ./scripts/zero2.json \
     --model_name_or_path liuhaotian/llava-v1.5-7b \
     --version v1 \
-    --data_path /home/guests/chantal_pellegrini/RaDialog_v2/data/mimic_cxr_instruct_llava_v2.json \
+    --data_path /home/guests/chantal_pellegrini/RaDialog_LLaVA/data/mimic_cxr_instruct_llava_v2.json \
     --image_folder /home/data/DIVA/mimic/mimic-cxr-jpg/2.0.0 \
     --vision_tower biovil \
     --mm_projector_type mlp2x_gelu \
