@@ -12,11 +12,12 @@
 
 [bb]:https://www.cs.cit.tum.de/camp/members/benjamin-busam-1/
 
-[![](https://img.shields.io/badge/Project_Page-green)](https://chantalmp.github.io/RaDialog/) [![](https://img.shields.io/badge/Arxiv-2307.05766-blue)](https://arxiv.org/abs/2311.18681) [![](https://img.shields.io/badge/PhysioNet-Dataset-lightgrey)](https://physionet.org/content/radialog-instruct-dataset/1.0.0/)
+[![](https://img.shields.io/badge/Project_Page-green)](https://chantalmp.github.io/RaDialog/) [![](https://img.shields.io/badge/Arxiv-2307.05766-blue)](https://arxiv.org/abs/2311.18681) [![](https://img.shields.io/badge/PhysioNet-Dataset-lightgrey)](https://physionet.org/content/radialog-instruct-dataset/1.0.0/) [![](https://img.shields.io/badge/Huggingface-yellow)](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation)
 
 **✨ News ✨**
 
 - 26 March 2024: RaDialog Instruct Dataset now available on [PhysioNet](https://physionet.org/content/radialog-instruct-dataset/1.0.0/)!
+- 29 May 2024: RaDialog is now available on [Hugging Face](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation)
 
 ---
 
