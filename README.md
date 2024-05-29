@@ -45,7 +45,7 @@ The main differences are the following:
 
 #### RaDialog-LLaVA main results:
 
-<img align="center" src="figs/results-radialog-llava.png" alt="teaser" width="50%">
+<img align="center" src="figs/results-radialog-llava.png" alt="teaser" width="40%">
 
 ## Getting Started with RaDialog-LLaVA
 
