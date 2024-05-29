@@ -1,23 +1,24 @@
-## RaDialog: A Large Vision-Language Model for Radiology Report Generation and Conversational Assistance
+## RaDialog-LLaVA
 
-**Authors:** [Chantal Pellegrini*][cp], [Ege Özsoy*][eo], [Benjamin Busam][bb], [Nassir Navab][nn], [Matthias Keicher][mk]
+[![](https://img.shields.io/badge/Arxiv-2307.05766-blue)](https://arxiv.org/abs/2311.18681) [![](https://img.shields.io/badge/PhysioNet-Dataset-lightgrey)](https://physionet.org/content/radialog-instruct-dataset/1.0.0/) [![](https://img.shields.io/badge/Huggingface-yellow)](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation)
 
-[cp]:https://www.cs.cit.tum.de/camp/members/chantal-pellegrini/
+RaDialog-LLaVA is the improved version of the original RaDialog model which can be found on [Github](https://github.com/ChantalMP/RaDialog/tree/master) and [Arxiv](https://arxiv.org/abs/2311.18681).
+It follows the same concepts, including the same image encoder, chexbert classifier, prompt construction and language model. However, we followed the LLaVA methodolgy for image-text alignment, leading to improved conversational assistance and making the model easier use.
+The main differences are the following:
 
-[eo]:https://www.cs.cit.tum.de/camp/members/ege-oezsoy/
+- image projection: instead of the BLIP-inspired alignment module, we follow the LLaVA approach and use a simple MLP projection to project the image
+  features to the language model input size, leading to more image tokens.
+- the image encoder is fine-tuned during LLM training
+- the model was trained on an updated version of the RaDialog-Instruct dataset with three additional instruct tasks: impression generation, view
+  classification and Rad-ReStruct QA
 
-[mk]:https://www.cs.cit.tum.de/camp/members/matthias-keicher/
+#### RaDialog-LLaVA main results:
 
-[nn]:https://www.cs.cit.tum.de/camp/members/cv-nassir-navab/nassir-navab/
-
-[bb]:https://www.cs.cit.tum.de/camp/members/benjamin-busam-1/
-
-[![](https://img.shields.io/badge/Project_Page-green)](https://chantalmp.github.io/RaDialog/) [![](https://img.shields.io/badge/Arxiv-2307.05766-blue)](https://arxiv.org/abs/2311.18681) [![](https://img.shields.io/badge/PhysioNet-Dataset-lightgrey)](https://physionet.org/content/radialog-instruct-dataset/1.0.0/) [![](https://img.shields.io/badge/Huggingface-yellow)](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation)
+<img align="center" src="figs/results-radialog-llava.png" alt="teaser" width="40%">
 
 **✨ News ✨**
 
-- 26 March 2024: RaDialog Instruct Dataset now available on [PhysioNet](https://physionet.org/content/radialog-instruct-dataset/1.0.0/)!
-- 29 May 2024: RaDialog is now available on [Hugging Face](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation)
+- 29 May 2024: RaDialog-LLaVA is now available on [Hugging Face](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation)
 
 ---
 
@@ -31,21 +32,6 @@ large language model (LLM) while simultaneously adapting it to a specialized dom
 abilities of the underlying LLM, we propose a comprehensive, semi-automatically labeled, image-grounded instruct dataset for chest X-ray radiology
 tasks. By training with this dataset, our method achieves state-of-the-art clinical correctness in report generation and shows impressive abilities in
 interactive tasks such as correcting reports and answering questions, serving as a foundational step toward clinical dialog systems.
-
----
-RaDialog-LLaVA follows the same concepts as the original RaDialog model, including the same image encoder, chexbert classifier, prompt construction
-and language model. However, we followed the LLaVA concepts for image-text alignment, making the model easier to train and use.
-The main differences are the following:
-
-- image projection: instead of the BLIP-inspired alignment module, we follow the LLaVA approach and use a simple MLP projection to project the image
-  features to the language model input size, leading to more image tokens.
-- the image encoder is fine-tuned during LLM training
-- the model was trained on an updated version of the RaDialog-Instruct dataset with three additional instruct tasks: impression generation, view
-  classification and Rad-ReStruct QA
-
-#### RaDialog-LLaVA main results:
-
-<img align="center" src="figs/results-radialog-llava.png" alt="teaser" width="40%">
 
 ## Getting Started with RaDialog-LLaVA
 
