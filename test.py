@@ -673,7 +673,6 @@ if __name__ == '__main__':
 
                     all_preds.extend(pred)
                     preds_history.extend([text_input[i] + pred[i] for i in range(len(pred))])
-                    preds_history.extend([text_input[i] for i in range(len(text_input))])
 
             pred_dir = Path("chexbert").absolute() / "outputs" / "predictions"
 
