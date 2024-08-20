@@ -1,6 +1,6 @@
 ## RaDialog-LLaVA
 
-[![](https://img.shields.io/badge/Arxiv-2307.05766-blue)](https://arxiv.org/abs/2311.18681) [![](https://img.shields.io/badge/PhysioNet-Dataset-lightgrey)](https://physionet.org/content/radialog-instruct-dataset/1.0.0/) [![](https://img.shields.io/badge/Huggingface-yellow)](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation)
+[![](https://img.shields.io/badge/Arxiv-2307.05766-blue)](https://arxiv.org/abs/2311.18681) [![](https://img.shields.io/badge/PhysioNet-Dataset-lightgrey)](https://physionet.org/content/radialog-instruct-dataset/1.1.0/) [![](https://img.shields.io/badge/Huggingface-yellow)](https://huggingface.co/ChantalPellegrini/RaDialog-interactive-radiology-report-generation)
 
 RaDialog-LLaVA is the improved version of the original RaDialog model which can be found on [Github](https://github.com/ChantalMP/RaDialog/tree/master) and [Arxiv](https://arxiv.org/abs/2311.18681).
 It follows the same concepts, including the same image encoder, chexbert classifier, prompt construction and language model. However, we followed the LLaVA methodolgy for image-text alignment, leading to improved conversational assistance and making the model easier use.
@@ -68,10 +68,7 @@ For more detailed instructions on how to train and evaluate RaDialog, please ref
 
 #### 1) Download the RaDialog-Instruct dataset
 
-The updated dataset is currently under review at PhysioNet and will be available soon. In the meantime, you can use the previous version of the
-dataset by following the instructions below:
-
-- Download the instruct dataset from [PhysioNet](https://physionet.org/content/radialog-instruct-dataset/1.0.0/)
+- Download the instruct dataset from [PhysioNet](https://physionet.org/content/radialog-instruct-dataset/1.1.0/)
 - unzip it place it in RaDialog_LLaVA/data/
 - in train.sh set the path to the instruct dataset (e.g. --data_path home/RaDialog_LLaVA/data/mimic_cxr_instruct_stratified.json)
 
