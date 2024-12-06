@@ -74,7 +74,8 @@ class SeparatorStyle(Enum):
 
 
 gen_report = True
-pred_chexpert_labels = json.load(open('findings_classifier/predictions/structured_preds_chexpert_log_weighting_test_macro.json', 'r'))
+# pred_chexpert_labels = json.load(open('findings_classifier/predictions/structured_preds_chexpert_log_weighting_test_macro.json', 'r'))
+pred_chexpert_labels = [] # if you have precomputed chexpert labels, you can load them here
 
 # Initialize the ASR model
 transcriber = pipeline("automatic-speech-recognition", model="openai/whisper-large-v3", device=0, torch_dtype=torch.float16)
